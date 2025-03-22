@@ -2,19 +2,24 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Card = ({ id, name, designation, image }) => {
-  
   return (
-    <div className='w-64 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700'>
+    <div className='w-64 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 hover:scale-110 duration-150'>
       <div className='p-5'>
-        <a href='/'>
+        <div className='h-28'>
           <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center'>
             {name}
           </h5>
-        </a>
-        <p className='mb-3 font-normal text-gray-700 dark:text-gray-400 text-center'>
-          {designation}
-        </p>
-        <img src={image} width={200} height={200} className='mb-5 rounded-4xl' alt={name}/>
+          <p className='mb-3 font-normal text-gray-700 dark:text-gray-400 text-center'>
+            {designation}
+          </p>
+        </div>
+        <img
+          src={image}
+          width={200}
+          height={200}
+          className='mb-5 rounded-4xl'
+          alt={name}
+        />
         <div className='flex items-center justify-center'>
           <Link
             to={`/home/${id}`}
@@ -30,9 +35,9 @@ const Card = ({ id, name, designation, image }) => {
             >
               <path
                 stroke='currentColor'
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth='2'
                 d='M1 5h12m0 0L9 1m4 4L9 9'
               />
             </svg>
