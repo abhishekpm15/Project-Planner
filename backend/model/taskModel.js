@@ -5,6 +5,7 @@ const taskSchema = new mongoose.Schema({
     task: { 
         taskName: {type: String, required: true},
         taskDescription: {type: String, required: true},
+        serviceName: {type: String, required: true},
         priority: { 
             type: String, 
             enum: ["Low", "Medium", "High", "Critical"], 
@@ -16,9 +17,9 @@ const taskSchema = new mongoose.Schema({
             default: "To Do" 
         },
         dueDate: { type: Date, required: true },
-        attachments: [{ type: String }]
+        // attachments: [{ type: String }]
     },
-    members: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], 
+    // members: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }], 
 }, { timestamps: true });
 
 const Task = mongoose.model("Task", taskSchema);

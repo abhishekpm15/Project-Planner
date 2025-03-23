@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Card = ({ id, name, designation, image }) => {
   return (
-    <div className='w-64 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 hover:scale-110 duration-150'>
+    <div className='w-64 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 hover:scale-105 duration-150'>
       <div className='p-5'>
         <div className='h-28'>
           <h5 className='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center'>
