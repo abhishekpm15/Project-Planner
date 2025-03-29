@@ -67,6 +67,7 @@ const UserPage = () => {
   }, [params.id]);
 
   useEffect(() => {
+    if (!userDetails || !userDetails.userId) return; 
     setLoad(true)
     if (userDetails !== '') {
       axios
@@ -86,6 +87,7 @@ const UserPage = () => {
 
   console.log('params' + JSON.stringify(params.id));
   console.log('user task details' + userTaskDetails.length);
+  // console.log("user task id " + userTaskDetails.map((taskDetail) => taskDetail._id));
 
   if (load) return <Loading />;
 
@@ -123,7 +125,7 @@ const UserPage = () => {
     );
 
   return (
-    <div className='w-screen h-screen flex items-center flex-col mt-[10%]'>
+    <div className='w-screen h-screen flex items-center flex-col mt-[7%]'>
       <Navbar />
       <div className='flex justify-center hover:scale-110 duration-150 text-sm'>
         <button
@@ -139,14 +141,15 @@ const UserPage = () => {
         <Modal openResponsive={openResponsive} setOpenResponsive={setOpenResponsive}>
           <TaskForm userId={userDetails.userId} setOpenResponsive={setOpenResponsive} onFinish={onFinish} form={form}/>
         </Modal>
-        <div className='flex flex-wrap gap-4'>
+        <div className='flex flex-wrap gap-5'>
           {userTaskDetails.map((taskDetail, index) => (
-            <TaskCard key={index} userTaskDetails={taskDetail} />
+            <TaskCard key={index} userTasks={taskDetail} userTaskDetails = {userTaskDetails} setUserTaskDetails={setUserTaskDetails}/>
           ))}
         </div>
       </div>
     </div>
   );
 };
+
 
 export default UserPage;

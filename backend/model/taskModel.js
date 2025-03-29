@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const taskSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref : "User"},
     task: { 
+        // taskId: {type: String, required: true},
         taskName: {type: String, required: true},
         taskDescription: {type: String, required: true},
         serviceName: {type: String, required: true},
@@ -13,7 +14,7 @@ const taskSchema = new mongoose.Schema({
         }, 
         status: { 
             type: String, 
-            enum: ["To Do", "In Progress", "Completed", "Blocked"], 
+            enum: ["To Do", "In Progress", "Completed", "Closed"], 
             default: "To Do" 
         },
         dueDate: { type: Date, required: true },

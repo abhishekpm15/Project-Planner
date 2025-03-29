@@ -49,4 +49,18 @@ const addTaskToUser = async (req, res) => {
     }
 };
 
-module.exports = { addTaskToUser, getTaskDetailsUser };
+const updateTaskStatus = async (req,res) => {
+    const {taskId, status} = req.body;
+    console.log("Task ID and Status " + taskId + status);
+    const task = await Task.findById(taskId);
+    console.log("Task ID and Status " + task);
+    if(!task){
+        return res.status(404).json({message: "Task not found"});
+    }
+    task.task.status = status;
+    await task.save();
+    console.log("Task updated " + task);
+    res.status(200).json({message: "Task updated successfully", task});
+}
+
+module.exports = { addTaskToUser, getTaskDetailsUser, updateTaskStatus };
