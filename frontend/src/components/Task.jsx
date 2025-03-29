@@ -9,31 +9,22 @@ const priorityMap = { Low: 2, Medium: 3, High: 4, Critical: 5 };
 
 const URL = import.meta.env.VITE_BACKEND_URL;
 
-console.log("outisde task id ");
-
-const Task = ({ userTasks, setUserTaskDetails, userTaskDetails, setOpenResponsive }) => {
+const Task = ({ userTasks, setUserTaskDetails, setOpenResponsive }) => {
   const [status, setStatus] = useState(userTasks?.task?.status);
-  console.log("task id " + userTasks?._id);
-  console.log("user task details " + JSON.stringify(userTaskDetails));
 
   const handleChange = (value) => {
-    // setStatus((prev) => (prev !== value) ?  value : prev);
-    console.log(`selected ${value}`);
     setStatus(value);
   };
 
   const handleSubmit = () => {
     if (status !== userTasks?.task?.status) {
-      console.log("Status changed to " + status);
       axios
         .post(`${URL}/api/task/updateTaskStatus`, {
           taskId: userTasks._id,
           status: status,
         })
         .then((response) => {
-          console.log("response " + response);
           toast.success(response.data.message);
-          console.log("user task details chekc" + JSON.stringify(userTasks));
           setUserTaskDetails((prev) => {
             const updatedTaskDetails = prev.map((taskDetail) => 
               (taskDetail._id === userTasks._id ? {...taskDetail, task: {...taskDetail.task, status: status}} : taskDetail)

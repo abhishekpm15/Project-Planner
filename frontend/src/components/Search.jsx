@@ -4,7 +4,6 @@ const Search = ({search, setSearch}) => {
 
   const handleSearch = e => {
     e.preventDefault()
-    console.log('Searching for:', search)
   }
 
   return (

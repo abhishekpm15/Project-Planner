@@ -18,7 +18,6 @@ app.use("/api/users", userRoutes)
 app.use("/api/task", taskRoutes)
 
 app.get("/", (req,res) => {
-    console.log("You have hit / API")
     res.send("You have hit / API")
 })
 

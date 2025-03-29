@@ -12,20 +12,16 @@ const priorityMap = { Low: 2, Medium: 3, High: 4, Critical: 5 };
 const URL = import.meta.env.VITE_BACKEND_URL;
 
 const TaskCard = ({ userTasks, setUserTaskDetails, userTaskDetails }) => {
-  console.log("JSON." + JSON.stringify(userTasks));
   const [openResponsive, setOpenResponsive] = useState(false);
   const handleCloseTask = (event) => {
     event.stopPropagation();
-    console.log("Button clicked");
     axios
       .post(`${URL}/api/task/updateTaskStatus`, {
         taskId: userTasks._id,
         status: "Closed",
       })
       .then((response) => {
-        console.log("response " + response);
         toast.success(response.data.message);
-        console.log("user task details chekc" + JSON.stringify(userTasks));
         setUserTaskDetails((prev) => {
           const updatedTaskDetails = prev.map((taskDetail) =>
             taskDetail._id === userTasks._id

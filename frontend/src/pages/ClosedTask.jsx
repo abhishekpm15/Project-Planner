@@ -20,44 +20,15 @@ const getPriorityLabel = (priority) => {
 
 const ClosedTask = () => {
   const [userDetails, setUserDetails] = useState("");
-  const [error, setError] = useState("");
   const params = useParams();
   const [load, setLoad] = useState(false);
-  const [openResponsive, setOpenResponsive] = useState(false);
-//   const [closedTask, setUserTaskDetails] = useState([]);
-  const [form] = Form.useForm();
   const [closedTask, setClosedTask] = useState([]);
-
-  const navigate = useNavigate();
-
-//   const onFinish = (values) => {
-//     console.log("Form Values:", values);
-//     axios
-//       .post(`${API_URL}/api/task/addTasks`, {
-//         userId: userDetails.userId,
-//         taskName: values.taskName,
-//         taskDescription: values.description,
-//         serviceName: values.service,
-//         priority: getPriorityLabel(values.priority),
-//         dueDate: values.endDate,
-//       })
-//       .then((res) => {
-//         console.log("response " + res);
-//         setClosedTask((prev) => [...prev, res.data.task]);
-//         form.resetFields();
-//         setOpenResponsive(false);
-//       })
-//       .catch((error) => {
-//         console.log("error " + error);
-//       });
-//   };
 
   useEffect(() => {
     setLoad(true);
     axios
       .get(`${API_URL}/api/users/getUserById/${params.id}`)
       .then((res) => {
-        console.log("user details" + JSON.stringify(res.data.user));
         setUserDetails(res.data.user);
       })
       .catch((err) => {
@@ -75,24 +46,17 @@ const ClosedTask = () => {
       axios
         .get(`${API_URL}/api/task/${userDetails.userId}`)
         .then((res) => {
-          console.log("get User Tasks" + JSON.stringify(res.data.task));
           const closedTasks = res.data.task.filter((task) => task.task.status === "Closed");
-          console.log("closed tasks check " + closedTasks)
           setClosedTask(closedTasks);
         })
         .catch((error) => {
           console.log("error user tasks" + error.response.data.message);
-          setError(error.response.data.message);
         })
         .finally(() => {
           setLoad(false);
         });
     }
   }, [userDetails]);
-
-  console.log("params" + JSON.stringify(params.id));
-  console.log("user task details" + closedTask.length);
-  // console.log("user task id " + closedTask.map((taskDetail) => taskDetail._id));
 
   if (load) return <Loading />;
 

@@ -3,7 +3,6 @@ const User = require('../model/userModel')
 const addUser = async (req, res) => {
   try {
     const { email, name, password, role, designation} = req.body
-    console.log("email + firstname + lastname + role + password " + email + " " + name + " " + role + " " + password)
     let user = await User.findOne({ email })
     if (user) return res.status(409).json({ message: 'User already exists' })
 
@@ -14,9 +13,6 @@ const addUser = async (req, res) => {
       role,
       designation
     })
-
-    console.log("user " + user)
-
     await user.save()
     res.status(201).json({ message: 'User stored successfully', user })
   } catch (error) {
@@ -28,7 +24,6 @@ const addUser = async (req, res) => {
 const getAllUsers = async (req, res) => {
     try {
         let users = await User.find()
-        console.log(users);
         if (users.length === 0) return res.status(200).json({"message": "No users found" })
         res.status(200).json({ users });  
     } catch (error) {
@@ -53,9 +48,7 @@ const getUserById = async (req, res) => {
 const deleteUser = async (req, res) => {
     try{
         const { id } = req.params;
-        console.log("id " + id)
         const user = await User.findOneAndDelete({ userId: id });
-        console.log("user delete" + user)
         if (!user) return res.status(404).json({ message: "User not found" });
         res.status(200).json({ message: "User deleted successfully" });
     }

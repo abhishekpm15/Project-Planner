@@ -33,7 +33,6 @@ const UserPage = () => {
   ).length;
 
   const onFinish = (values) => {
-    console.log("Form Values:", values);
     axios
       .post(`${API_URL}/api/task/addTasks`, {
         userId: userDetails.userId,
@@ -44,7 +43,6 @@ const UserPage = () => {
         dueDate: values.endDate,
       })
       .then((res) => {
-        console.log("response " + res);
         setUserTaskDetails((prev) => [...prev, res.data.task]);
         form.resetFields();
         setOpenResponsive(false);
@@ -59,7 +57,6 @@ const UserPage = () => {
     axios
       .get(`${API_URL}/api/users/getUserById/${params.id}`)
       .then((res) => {
-        console.log("user details" + JSON.stringify(res.data.user));
         setUserDetails(res.data.user);
       })
       .catch((err) => {
@@ -77,7 +74,6 @@ const UserPage = () => {
       axios
         .get(`${API_URL}/api/task/${userDetails.userId}`)
         .then((res) => {
-          console.log("get User Tasks" + JSON.stringify(res.data.task));
           setUserTaskDetails(res.data.task);
         })
         .catch((error) => {
@@ -89,9 +85,6 @@ const UserPage = () => {
         });
     }
   }, [userDetails]);
-
-  console.log("params" + JSON.stringify(params.id));
-  console.log("user task details" + userTaskDetails.length);
 
   if (load) return <Loading />;
 

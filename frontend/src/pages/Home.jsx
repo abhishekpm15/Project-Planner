@@ -30,7 +30,6 @@ const HomePage = () => {
       try {
         setLoad(true)
         const res = await axios.get(`${API_URL}/api/users/getAllUsers`)
-        console.log('data  ' + JSON.stringify(res.data))
         setUserDetails(res.data.users)
         setFilteredResults(res.data.users)
       } catch (error) {

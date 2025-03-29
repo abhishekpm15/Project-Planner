@@ -30,26 +30,7 @@ const selectOption = [
 ]
 const API_URL = import.meta.env.VITE_BACKEND_URL
 
-const TaskForm = ({ userId, setOpenResponsive, onFinish ,form}) => {
-
-  // useEffect(() => {
-  //   axios.post(`${API_URL}/api/task/addTasks`,
-  //     {
-  //       userId: userId,
-  //       taskName: values.name,
-  //       taskDescription: values.description,
-  //       priority: getPriorityLabel(values.priority),
-  //       dueDate: values.date
-  //     }
-  //   ).then((res) => {
-  //     console.log("response " + res)
-  //     setOpenResponsive(false)
-  //   }).catch((error) => {
-  //     console.log("error " + error)
-  //   })
-  // }, [])
-
- 
+const TaskForm = ({ onFinish ,form}) => {
 
   return (
     <Form

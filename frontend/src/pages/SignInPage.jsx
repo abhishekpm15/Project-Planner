@@ -9,7 +9,6 @@ const SignInPage = () => {
 
   useEffect(() => {
     if (isSignedIn) {
-      console.log("user " + JSON.stringify(user))
       navigate('/home')
     } else {
       setLoading(false)
