@@ -91,13 +91,17 @@ const Task = ({ userTasks, setUserTaskDetails, userTaskDetails, setOpenResponsiv
         <div className="flex space-x-10">
           <div className="text-lg font-semibold flex-1">Status: </div>
           <div className="font-normal flex-3 text-xl">
+          {userTasks?.task?.status === "Closed" ? (
+              <span className="bg-emerald-500 px-5 py-2 rounded-lg text-lg mt-2 mb-4 text-white">Closed</span>
+            ) : 
             <Select
               handleChange={handleChange}
               status={userTasks?.task?.status}
             />
+          }
           </div>
         </div>
-        {(userTasks?.task?.status !== "Completed" && userTasks?.task?.status !== "Closed")  && (
+        {( userTasks?.task?.status !== "Closed")  && (
           <Button type="primary" onClick={handleSubmit}>
             Submit
           </Button>

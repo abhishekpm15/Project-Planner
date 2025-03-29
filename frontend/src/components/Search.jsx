@@ -45,7 +45,7 @@ const Search = ({search, setSearch}) => {
           />
           <button
             type='submit'
-            className='text-white absolute top-1.5 right-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+            className='text-white absolute top-1 right-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
           >
             Search
           </button>
